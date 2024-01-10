@@ -7,11 +7,10 @@ import 'package:demo/widgets/text_widget.dart';
 class PlansSelector extends StatefulWidget {
   const PlansSelector({
     Key? key,
-    this.callback,
     required this.planModel,
   }) : super(key: key);
   final Plans? planModel;
-  final Function(Plans)? callback;
+
   @override
   State<PlansSelector> createState() => _PlansSelectorState();
 }
@@ -39,9 +38,6 @@ class _PlansSelectorState extends State<PlansSelector> {
           values: _currentRangeValues,
           max: _defaultRangeValues.end,
           divisions: 5,
-          semanticFormatterCallback: (_) {
-            return '_';
-          },
           labels: RangeLabels(
             '${_currentRangeValues.start.round()}GB',
             '${_currentRangeValues.end.round()}GB',
@@ -52,21 +48,9 @@ class _PlansSelectorState extends State<PlansSelector> {
                 _currentRangeValues = values;
               },
             );
-
-            if (!checkIsDefaultValues(
-                current: _currentRangeValues,
-                defaultValues: _defaultRangeValues)) {
-              widget.callback
-                  ?.call(widget.planModel!.copyWith(range: values.end));
-            }
           },
         ),
       ],
     );
   }
-}
-
-bool checkIsDefaultValues({RangeValues? current, RangeValues? defaultValues}) {
-  return current?.start == defaultValues?.start &&
-      current?.end == defaultValues?.end;
 }

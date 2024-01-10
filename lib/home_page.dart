@@ -26,7 +26,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController? controller;
   List<String> resultsList = [];
-  void performSearch({required String? keyWord, required int currentIndex}) {
+  void searchOpertion({required String? keyWord, required int currentIndex}) {
     //searching
     List<String> list = [];
     list.addAll(widget.localList);
@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
               label: 'search....',
               onSubmit: (value) async {
                 debugPrint('entered $value');
-                performSearch(
+                searchOpertion(
                   keyWord: value,
                   currentIndex: selectedIndex,
                 );
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                         () {
                           controller!.clear();
                           selectedIndex = index;
-                          performSearch(
+                          searchOpertion(
                             keyWord: '',
                             currentIndex: index,
                           );

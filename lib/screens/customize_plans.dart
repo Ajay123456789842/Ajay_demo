@@ -2,7 +2,7 @@ import 'package:demo/constants/app_colors.dart';
 import 'package:demo/model/plan_model.dart';
 import 'package:demo/styles/get_text_style.dart';
 import 'package:demo/widgets/button.dart';
-import 'package:demo/widgets/man_widget.dart';
+import 'package:demo/widgets/planwidget_categories.dart';
 import 'package:demo/widgets/plans_selector.dart';
 import 'package:demo/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -115,24 +115,10 @@ class _SelectPlansState extends State<SelectPlans> {
                     ListView.builder(
                       shrinkWrap: true,
                       itemCount: selectedPlans!.plans!.length,
-                      itemBuilder: (man, index) {
+                      itemBuilder: (context, index) {
                         var plan = selectedPlans!.plans![index];
                         return PlansSelector(
                           planModel: plan,
-                          callback: (selected) {
-                            //
-                            selectedPlans!.plans!.removeWhere((element) =>
-                                element.name!.toLowerCase() ==
-                                selected.name!.toLowerCase());
-                            selectedPlans!.plans!.add(selected);
-                             selectedPlans?.plans?.forEach(
-                              (element) {
-                                debugPrint(
-                                  element.toMap().toString(),
-                                );
-                              },
-                            );
-                          },
                         );
                       },
                     ),
